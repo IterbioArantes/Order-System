@@ -1,20 +1,36 @@
 package projeto.spring.jpa.resources;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import projeto.spring.jpa.entities.User;
+import projeto.spring.jpa.services.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
+		
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping
-	public ResponseEntity<User> findAll(){
-		User u = new User(1L,"Itérbio Arantes", "iterbio7@gmail.com","95649879","123456");
+	public ResponseEntity<List<User>> findAll(){
 		
-		return ResponseEntity.ok().body(u);
+		List<User> listUser = userService.findAll();
+		return ResponseEntity.ok().body(listUser);
+	}
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<User> findById(@PathVariable Long id){
+		
+		User user = userService.findById(id);
+		
+		return ResponseEntity.ok().body(user);
 	}
 }
