@@ -1,5 +1,6 @@
 package projeto.spring.jpa.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -11,7 +12,10 @@ import projeto.spring.jpa.entities.pk.OrderItemPK;
 
 @Entity
 @Table(name = "tb_order_item")
-public class OrderItem {
+
+public class OrderItem implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
 	private OrderItemPK id = new OrderItemPK();
