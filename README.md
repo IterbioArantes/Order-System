@@ -1,1 +1,1 @@
-A Order System using Spring Boot and JPA + Hibernate
+Web Service Ordering System created with Spring Boot and JPA/Hibernate
